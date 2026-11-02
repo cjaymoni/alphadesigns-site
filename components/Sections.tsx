@@ -1,6 +1,7 @@
 import { CourseLink } from './CourseContext';
 import EnrolForm from './EnrolForm';
 import { CONTACT } from '@/lib/contact';
+import { FAQS, FEES, ghs } from '@/lib/content';
 
 export function Hero() {
   return (
@@ -83,7 +84,7 @@ export function Courses() {
               <div><dt>When</dt><dd>6 Saturdays, 9 am – 12 pm</dd></div>
               <div><dt>Hours</dt><dd>18 live hours + 2–3 hrs/week practice</dd></div>
               <div><dt>Skills</dt><dd>HTML, CSS, introductory JavaScript</dd></div>
-              <div><dt>Fee</dt><dd>GHS 1,200</dd></div>
+              <div><dt>Fee</dt><dd>{ghs(FEES.basic)}</dd></div>
             </dl>
             <CourseLink className="btn btn-ink" course="Basic">
               Reserve a Basic seat
@@ -99,7 +100,9 @@ export function Courses() {
               <div><dt>Hours</dt><dd>84 live hours + 6–10 hrs/week practice</dd></div>
               <div><dt>Skills</dt><dd>React, APIs, databases, auth, testing, deployment</dd></div>
               <div><dt>Entry</dt><dd>45-minute readiness check (HTML, CSS, JS)</dd></div>
-              <div><dt>Fee</dt><dd>GHS 4,500 · or 3 payments of GHS 1,500</dd></div>
+              <div><dt>Fee</dt><dd>
+                {ghs(FEES.intensive)} · or 3 payments of {ghs(FEES.intensive / 3)}
+              </dd></div>
             </dl>
             <CourseLink className="btn btn-teal" course="Intensive">
               Book a readiness check
@@ -217,15 +220,6 @@ export function Schools() {
   );
 }
 
-const faqs = [
-  ['Do I need any experience?', 'Not for the Basic course. It starts from your first HTML page. The Intensive course expects you to be comfortable with HTML, CSS and some JavaScript, which is why it starts with a readiness check.'],
-  ['What is the readiness check?', 'A 45-minute practical exercise in three short parts: a little HTML and CSS, a JavaScript function connected to a button, and finding a bug. It helps us make sure the Intensive course is the right fit. If it is not yet, the Basic course is a good place to start.'],
-  ['What equipment do I need?', 'A laptop. A phone alone is not enough for writing and testing code. You will also need an internet connection for publishing your work.'],
-  ['Is the certificate accredited?', 'No. It is an Alpha Designs certificate of completion, awarded when you meet the course requirements. It is not an accredited qualification.'],
-  ['Will this get me a job?', 'We cannot promise employment. What you will have is a working project you built yourself, published online, that you can show and explain.'],
-  ['What if I miss a session?', 'Each week has catch-up exercises so you can work through what you missed before the next session.'],
-  ['What time zone are the classes in?', 'All times are Ghana time (GMT).'],
-];
 
 export function Faq() {
   return (
@@ -236,7 +230,7 @@ export function Faq() {
           Good to know before you join
         </h2>
         <div className="faq">
-          {faqs.map(([q, a]) => (
+          {FAQS.map(([q, a]) => (
             <details key={q}>
               <summary>{q}</summary>
               <p>{a}</p>
