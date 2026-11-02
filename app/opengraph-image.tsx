@@ -3,7 +3,7 @@ import { join } from 'node:path';
 import { ImageResponse } from 'next/og';
 
 // The preview image shown when the site is shared on WhatsApp, Facebook, X, LinkedIn, etc.
-export const alt = 'Alpha Designs: learn to build websites by building them. Web development training in Ghana.';
+export const alt = 'Alpha Designs: learn to build websites, or let us build yours. Web development training and bespoke websites and web apps in Ghana.';
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 
@@ -40,20 +40,22 @@ export default async function OpengraphImage() {
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
           <div style={{ color: '#f2a900', fontSize: 26, letterSpacing: 4, textTransform: 'uppercase' }}>
-            Web Development Training · Ghana
+            Training · Websites · Web apps · Ghana
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', fontSize: 80, fontWeight: 700, lineHeight: 1.05, fontFamily: 'Space Grotesk', letterSpacing: -2 }}>
-            <span>Learn to build websites</span>
-            <span style={{ color: '#f2a900' }}>by building them.</span>
+            <span>Learn to build websites,</span>
+            <span style={{ color: '#f2a900' }}>or let us build yours.</span>
           </div>
         </div>
 
-        <div style={{ display: 'flex', gap: 16, fontSize: 26, color: '#c9d2e0' }}>
+        <div style={{ display: 'flex', gap: 14, fontSize: 23, color: '#c9d2e0' }}>
           <span>Beginner course</span>
           <span style={{ color: '#3a4a63' }}>•</span>
           <span>React intensive</span>
           <span style={{ color: '#3a4a63' }}>•</span>
           <span>School programmes</span>
+          <span style={{ color: '#3a4a63' }}>•</span>
+          <span>Bespoke websites &amp; apps</span>
         </div>
       </div>
     ),

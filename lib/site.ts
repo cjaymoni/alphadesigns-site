@@ -2,7 +2,10 @@
 export const SITE = {
   url: (process.env.NEXT_PUBLIC_SITE_URL || 'https://alphadesigns.dev').replace(/\/$/, ''),
   name: 'Alpha Designs',
-  title: 'Web Development Courses in Ghana | Alpha Designs',
+  title: 'Web Development Training & Websites in Ghana | Alpha Designs',
   description:
-    'Hands-on web development courses in Ghana. Build and publish your first website in 6 Saturdays, or build and deploy a React app in 12 weeks. Coding programmes for schools too.',
+    'Alpha Designs teaches web development and builds bespoke websites, web apps and training in Ghana. Hands-on courses for beginners, React learners and schools.',
+  shareTitle: 'Alpha Designs · Web development training and bespoke builds in Ghana',
+  shareDescription:
+    'Hands-on courses for beginners, intermediate learners and schools, plus bespoke websites, web apps and tailored training for your business or organisation.',
 };

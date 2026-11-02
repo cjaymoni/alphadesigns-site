@@ -18,15 +18,13 @@ export const metadata: Metadata = {
     url: '/',
     siteName: SITE.name,
     locale: 'en_GH',
-    title: 'Alpha Designs · Learn to build websites by building them',
-    description:
-      'Instructor-led web development courses in Ghana for beginners, intermediate learners and schools.',
+    title: SITE.shareTitle,
+    description: SITE.shareDescription,
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Alpha Designs · Learn to build websites by building them',
-    description:
-      'Instructor-led web development courses in Ghana for beginners, intermediate learners and schools.',
+    title: SITE.shareTitle,
+    description: SITE.shareDescription,
   },
   robots: { index: true, follow: true },
 };
