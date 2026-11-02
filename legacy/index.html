@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Alpha Designs · Web Development Training in Ghana</title>
+  <meta name="description" content="Hands-on, instructor-led web development training in Ghana. Build and publish your first website, or build and deploy a React app. Programmes for schools too.">
+  <meta property="og:title" content="Alpha Designs · Learn to build websites by building them">
+  <meta property="og:description" content="Instructor-led web development courses in Ghana for beginners, intermediate learners and schools.">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#0f1b2d">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230f1b2d'/%3E%3Cg transform='translate(11 11) scale(.78)'%3E%3Cpolygon points='12,86 50,10 88,86 68,86 50,66 32,86' fill='%23ffffff'/%3E%3Crect x='43' y='42' width='14' height='14' fill='%23f2a900'/%3E%3C/g%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="wrap nav">
+      <a class="brand" href="#top" aria-label="Alpha Designs home">
+        <svg class="mark" width="36" height="36" viewBox="0 0 100 100" aria-hidden="true">
+          <polygon points="12,86 48,14 48,42 44,42 44,56 56,56 56,42 52,42 52,14 88,86 68,86 50,66 32,86" fill="#ffffff"/>
+          <rect x="44" y="42" width="12" height="14" fill="#f2a900"/>
+        </svg>
+        <span class="brand-name"><b>alpha</b><span>designs</span></span>
+      </a>
+      <button class="menu-btn" aria-expanded="false" aria-controls="site-nav">
+        <span class="sr-only">Menu</span>
+        <span class="bars" aria-hidden="true"></span>
+      </button>
+      <nav id="site-nav" class="nav-links" aria-label="Main">
+        <a href="#courses">Courses</a>
+        <a href="#approach">How we teach</a>
+        <a href="#schools">For schools</a>
+        <a href="#faq">FAQ</a>
+        <a class="btn btn-gold btn-sm" href="#enrol">Reserve a seat</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- Hero -->
+    <section class="hero" id="top">
+      <div class="wrap hero-grid">
+        <div>
+          <p class="kicker">Web Development Training · Ghana</p>
+          <h1>Learn to build websites <span>by building them.</span></h1>
+          <p class="lede">Hands-on, instructor-led lessons. Each one goes from a short demonstration to supported practice, then you make a change on your own. You finish with a working project you can publish and explain.</p>
+          <div class="hero-ctas">
+            <a class="btn btn-gold" href="#courses">See the courses</a>
+            <a class="btn btn-ghost" href="#schools">Programmes for schools</a>
+          </div>
+        </div>
+        <figure class="code-card" aria-label="Example of code a learner writes in the first course">
+          <div class="code-bar" aria-hidden="true"><i></i><i></i><i></i><span>index.html</span></div>
+<pre><code><span class="t">&lt;header&gt;</span>
+  <span class="t">&lt;h1&gt;</span>Ama's Kitchen<span class="t">&lt;/h1&gt;</span>
+  <span class="t">&lt;p&gt;</span>Fresh jollof, every day.<span class="t">&lt;/p&gt;</span>
+<span class="t">&lt;/header&gt;</span>
+<span class="t">&lt;button</span> <span class="a">id</span>=<span class="s">"order"</span><span class="t">&gt;</span>Order now<span class="t">&lt;/button&gt;</span>
+
+<span class="c">// week 5: make it do something</span>
+<span class="k">const</span> btn = document.<span class="f">querySelector</span>(<span class="s">'#order'</span>);
+btn.<span class="f">addEventListener</span>(<span class="s">'click'</span>, () =&gt; {
+  btn.textContent = <span class="s">'Order received ✓'</span>;
+});</code></pre>
+        </figure>
+      </div>
+    </section>
+
+    <!-- Courses -->
+    <section class="section" id="courses" aria-labelledby="courses-title">
+      <div class="wrap">
+        <p class="eyebrow">Courses</p>
+        <h2 class="section-title" id="courses-title">Two tracks. Pick where you are starting from.</h2>
+
+        <div class="tracks">
+          <article class="track basic">
+            <span class="tag">Beginner</span>
+            <h3>Basic: Build &amp; Publish Your First Website</h3>
+            <p class="sub">Build a responsive website for a small business and put it online. No experience needed.</p>
+            <dl class="facts">
+              <div><dt>When</dt><dd>6 Saturdays, 9 am – 12 pm</dd></div>
+              <div><dt>Hours</dt><dd>18 live hours + 2–3 hrs/week practice</dd></div>
+              <div><dt>Skills</dt><dd>HTML, CSS, introductory JavaScript</dd></div>
+              <div><dt>Starts</dt><dd><span class="fill">[date]</span></dd></div>
+              <div><dt>Fee</dt><dd>GHS <span class="fill">[fee]</span></dd></div>
+            </dl>
+            <a class="btn btn-ink" href="#enrol" data-course="Basic">Reserve a Basic seat</a>
+          </article>
+
+          <article class="track intensive">
+            <span class="tag">Intermediate</span>
+            <h3>Intensive: Build &amp; Deploy a React App</h3>
+            <p class="sub">Build and deploy a booking app with a database, user accounts and access controls.</p>
+            <dl class="facts">
+              <div><dt>When</dt><dd>12 weeks · Tue &amp; Thu 7–9 pm, Sat 9 am – 12 pm</dd></div>
+              <div><dt>Hours</dt><dd>84 live hours + 6–10 hrs/week practice</dd></div>
+              <div><dt>Skills</dt><dd>React, APIs, databases, auth, testing, deployment</dd></div>
+              <div><dt>Entry</dt><dd>45-minute readiness check (HTML, CSS, JS)</dd></div>
+              <div><dt>Starts</dt><dd><span class="fill">[date]</span></dd></div>
+              <div><dt>Fee</dt><dd>GHS <span class="fill">[fee]</span></dd></div>
+            </dl>
+            <a class="btn btn-teal" href="#enrol" data-course="Intensive">Book a readiness check</a>
+          </article>
+        </div>
+
+        <h3 class="sub-title">What you will learn</h3>
+        <ul class="learn">
+          <li><strong>Structure</strong>Semantic HTML pages, links, images and forms</li>
+          <li><strong>Style</strong>CSS layouts that work on phones and larger screens</li>
+          <li><strong>Behaviour</strong>JavaScript interactions, then React components</li>
+          <li><strong>Go live</strong>Publishing, Git &amp; GitHub, and deployment</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Approach -->
+    <section class="section alt" id="approach" aria-labelledby="approach-title">
+      <div class="wrap">
+        <p class="eyebrow">How we teach</p>
+        <h2 class="section-title" id="approach-title">Every lesson ends with something you made yourself.</h2>
+        <ol class="steps">
+          <li>
+            <span class="num">1</span>
+            <h3>Watch it built</h3>
+            <p>A short, live demonstration of one idea, written from scratch so you see every step.</p>
+          </li>
+          <li>
+            <span class="num">2</span>
+            <h3>Practise with support</h3>
+            <p>You repeat it on your own laptop with the instructor on hand to help you get unstuck.</p>
+          </li>
+          <li>
+            <span class="num">3</span>
+            <h3>Change it on your own</h3>
+            <p>A small challenge you solve without step-by-step help, so the skill is really yours.</p>
+          </li>
+          <li>
+            <span class="num">4</span>
+            <h3>Show and explain</h3>
+            <p>You finish by presenting your project and explaining how it works.</p>
+          </li>
+        </ol>
+
+        <div class="why">
+          <div><strong>Small, practical groups</strong>Lessons are instructor-led and built around real practice time, not long lectures.</div>
+          <div><strong>Starter files every week</strong>Each session comes with prepared files, so you spend your time learning rather than setting up.</div>
+          <div><strong>Certificate of completion</strong>Meet the course requirements and receive an Alpha Designs certificate of completion.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Schools -->
+    <section class="section schools" id="schools" aria-labelledby="schools-title">
+      <div class="wrap schools-grid">
+        <div>
+          <p class="eyebrow eyebrow-light">For schools</p>
+          <h2 class="section-title" id="schools-title">Bring web development to your pupils.</h2>
+          <p class="lede">We work with primary, JHS and SHS schools to run practical coding lessons as a club, enrichment period or holiday programme. Start with an observed demonstration, then decide whether to run a small pilot.</p>
+          <ul class="ticks">
+            <li><strong>Six-session introductory pilot</strong> of 60–90 minutes each, at times the school approves</li>
+            <li><strong>Full Basic course</strong> for SHS students, split into shorter school-approved sessions</li>
+            <li><strong>Child-friendly notes, workbooks and coding challenges</strong> adapted to pupils' ages</li>
+            <li><strong>Safe by design:</strong> pupils use invented details, and nothing is published without school and parent permission</li>
+            <li><strong>Completion summary</strong> for the school on participation, finished work and next steps</li>
+          </ul>
+          <a class="btn btn-gold" href="#enrol" data-course="School programme">Request a school meeting</a>
+        </div>
+
+        <aside class="cq-card" aria-labelledby="cq-title">
+          <p class="cq-label">Included with school programmes</p>
+          <h3 id="cq-title">CodeQuest <span aria-hidden="true">✦</span></h3>
+          <p>Our interactive online classroom for pupils and teachers.</p>
+          <dl class="cq-stats">
+            <div><dt>42</dt><dd>lessons</dd></div>
+            <div><dt>173</dt><dd>slide cards</dd></div>
+          </dl>
+          <ul>
+            <li><b>Pupils</b> work through lessons and games, and their work is saved.</li>
+            <li><b>Teachers</b> present lessons and follow their own class's progress.</li>
+            <li><b>School admins</b> manage accounts without seeing pupils' work.</li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section" id="faq" aria-labelledby="faq-title">
+      <div class="wrap narrow">
+        <p class="eyebrow">FAQ</p>
+        <h2 class="section-title" id="faq-title">Good to know before you join</h2>
+        <div class="faq">
+          <details>
+            <summary>Do I need any experience?</summary>
+            <p>Not for the Basic course. It starts from your first HTML page. The Intensive course expects you to be comfortable with HTML, CSS and some JavaScript, which is why it starts with a readiness check.</p>
+          </details>
+          <details>
+            <summary>What is the readiness check?</summary>
+            <p>A 45-minute practical exercise in three short parts: a little HTML and CSS, a JavaScript function connected to a button, and finding a bug. It helps us make sure the Intensive course is the right fit. If it is not yet, the Basic course is a good place to start.</p>
+          </details>
+          <details>
+            <summary>What equipment do I need?</summary>
+            <p>A laptop. A phone alone is not enough for writing and testing code. You will also need an internet connection for publishing your work.</p>
+          </details>
+          <details>
+            <summary>Is the certificate accredited?</summary>
+            <p>No. It is an Alpha Designs certificate of completion, awarded when you meet the course requirements. It is not an accredited qualification.</p>
+          </details>
+          <details>
+            <summary>Will this get me a job?</summary>
+            <p>We cannot promise employment. What you will have is a working project you built yourself, published online, that you can show and explain.</p>
+          </details>
+          <details>
+            <summary>What if I miss a session?</summary>
+            <p>Each week has catch-up exercises so you can work through what you missed before the next session.</p>
+          </details>
+          <details>
+            <summary>What time zone are the classes in?</summary>
+            <p>All times are Ghana time (GMT).</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- Enrol -->
+    <section class="enrol" id="enrol" aria-labelledby="enrol-title">
+      <div class="wrap enrol-grid">
+        <div>
+          <h2 id="enrol-title">Reserve your seat</h2>
+          <p>Join the free introduction to meet the instructor, see a lesson and ask questions before you commit.</p>
+          <dl class="contact">
+            <div><dt>Free intro</dt><dd><span class="fill">[date, time]</span></dd></div>
+            <div><dt>Call / WhatsApp</dt><dd><span class="fill">[phone]</span></dd></div>
+            <div><dt>Email</dt><dd><span class="fill">[email]</span></dd></div>
+            <div><dt>Venue</dt><dd><span class="fill">[online / venue]</span></dd></div>
+          </dl>
+        </div>
+
+        <form class="enrol-form" id="enrol-form" novalidate>
+          <div class="field">
+            <label for="f-name">Your name</label>
+            <input id="f-name" name="name" autocomplete="name" required>
+          </div>
+          <div class="field">
+            <label for="f-phone">Phone or WhatsApp</label>
+            <input id="f-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required>
+          </div>
+          <div class="field">
+            <label for="f-course">I'm interested in</label>
+            <select id="f-course" name="course">
+              <option>Basic</option>
+              <option>Intensive</option>
+              <option>School programme</option>
+              <option>Not sure yet</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="f-msg">Anything you'd like us to know? <span class="opt">(optional)</span></label>
+            <textarea id="f-msg" name="message" rows="3"></textarea>
+          </div>
+          <div class="send-row">
+            <button class="btn btn-ink" type="submit" data-via="whatsapp">Send on WhatsApp</button>
+            <button class="btn btn-outline" type="submit" data-via="email">Send by email</button>
+          </div>
+          <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-grid">
+      <div class="brand" role="img" aria-label="Alpha Designs">
+        <svg class="mark" width="36" height="36" viewBox="0 0 100 100" aria-hidden="true">
+          <polygon points="12,86 48,14 48,42 44,42 44,56 56,56 56,42 52,42 52,14 88,86 68,86 50,66 32,86" fill="#ffffff"/>
+          <rect x="44" y="42" width="12" height="14" fill="#f2a900"/>
+        </svg>
+        <span class="brand-name" aria-hidden="true"><b>alpha</b><span>designs</span></span>
+      </div>
+      <p>All times are Ghana time. A laptop is required. The certificate is a provider certificate of completion, not an accredited qualification. Courses do not guarantee employment.</p>
+      <p class="copy">© <span id="year">2026</span> Alpha Designs</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
