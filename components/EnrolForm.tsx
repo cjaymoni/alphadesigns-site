@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { COURSES, type Course } from '@/lib/courses';
 import { useCourse } from './CourseContext';
 
@@ -17,6 +17,46 @@ export default function EnrolForm() {
   const nameRef = useRef<HTMLInputElement>(null);
   const phoneRef = useRef<HTMLInputElement>(null);
 
+  // Status text uses the transitions.dev "Text states swap": old text exits, new text enters.
+  const [shown, setShown] = useState<Status>({ text: '' });
+  const swapRef = useRef<HTMLSpanElement>(null);
+  const entering = useRef(false);
+  useEffect(() => {
+    const el = swapRef.current;
+    if (!el || status === shown) return;
+    if (!shown.text) {
+      setShown(status);
+      return;
+    }
+    const dur = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--text-swap-dur')) || 150;
+    el.classList.add('is-exit');
+    const t = setTimeout(() => {
+      entering.current = true;
+      setShown(status);
+    }, dur);
+    return () => clearTimeout(t);
+  }, [status, shown]);
+  useLayoutEffect(() => {
+    const el = swapRef.current;
+    if (!el || !entering.current) return;
+    entering.current = false;
+    el.classList.remove('is-exit');
+    el.classList.add('is-enter-start');
+    void el.offsetHeight; // force reflow so the next change transitions
+    el.classList.remove('is-enter-start');
+  }, [shown]);
+
+  // Empty required fields shake (transitions.dev "Error state shake").
+  function shake(el: HTMLElement | null) {
+    if (!el) return;
+    el.classList.remove('is-shaking');
+    void el.offsetWidth; // force reflow so the shake replays
+    el.classList.add('is-shaking');
+    const cs = getComputedStyle(document.documentElement);
+    const ms = (parseFloat(cs.getPropertyValue('--shake-dur-a')) || 80) * 2 + (parseFloat(cs.getPropertyValue('--shake-dur-b')) || 60) * 2;
+    setTimeout(() => el.classList.remove('is-shaking'), ms + 20);
+  }
+
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (sending) return;
@@ -30,14 +70,16 @@ export default function EnrolForm() {
 
     setInvalid({ name: !name, phone: !phone });
     if (!name || !phone) {
-      setStatus({ text: 'Please add your name and a phone number so we can reply.', error: true });
+      setStatus({ text: 'Add your name and a phone number so we can reply.', error: true });
+      if (!name) shake(nameRef.current);
+      if (!phone) shake(phoneRef.current);
       (!name ? nameRef : phoneRef).current?.focus();
       return;
     }
 
     if (via === 'whatsapp') {
       if (!WHATSAPP_NUMBER) {
-        setStatus({ text: 'WhatsApp is not set up yet. Please use “Send by email” instead.', error: true });
+        setStatus({ text: 'WhatsApp isn’t set up yet. Use “Send by email” instead.', error: true });
         return;
       }
       const lines = [
@@ -83,7 +125,18 @@ export default function EnrolForm() {
     <form className="enrol-form" id="enrol-form" noValidate onSubmit={handleSubmit}>
       <div className="field">
         <label htmlFor="f-name">Your name</label>
-        <input id="f-name" ref={nameRef} name="name" autoComplete="name" required maxLength={100} aria-invalid={invalid.name} />
+        <input
+          id="f-name"
+          ref={nameRef}
+          className="t-input"
+          name="name"
+          autoComplete="name"
+          required
+          maxLength={100}
+          aria-invalid={invalid.name}
+          aria-describedby={invalid.name ? 'form-status' : undefined}
+          onInput={() => invalid.name && setInvalid((v) => ({ ...v, name: false }))}
+        />
       </div>
       <div className="field">
         <label htmlFor="f-phone">Phone or WhatsApp</label>
@@ -94,9 +147,12 @@ export default function EnrolForm() {
           type="tel"
           autoComplete="tel"
           inputMode="tel"
+          className="t-input"
           required
           maxLength={30}
           aria-invalid={invalid.phone}
+          aria-describedby={invalid.phone ? 'form-status' : undefined}
+          onInput={() => invalid.phone && setInvalid((v) => ({ ...v, phone: false }))}
         />
       </div>
       <div className="field">
@@ -114,7 +170,7 @@ export default function EnrolForm() {
         <textarea id="f-msg" name="message" rows={3} maxLength={2000} />
       </div>
       {/* Spam trap: hidden from people, often filled in by bots. */}
-      <div className="hp" aria-hidden="true">
+      <div className="hp" inert>
         <label htmlFor="f-website">Website</label>
         <input id="f-website" name="website" tabIndex={-1} autoComplete="off" />
       </div>
@@ -126,8 +182,10 @@ export default function EnrolForm() {
           {sending ? 'Sending…' : 'Send by email'}
         </button>
       </div>
-      <p className={`form-status${status.error ? ' error' : ''}`} id="form-status" role="status" aria-live="polite">
-        {status.text}
+      <p className={`form-status${shown.error ? ' error' : ''}`} id="form-status" role="status">
+        <span className="t-text-swap" ref={swapRef}>
+          {shown.text}
+        </span>
       </p>
     </form>
   );

@@ -4,6 +4,7 @@ import { CourseProvider } from '@/components/CourseContext';
 import { Approach, Courses, Enrol, Faq, Hero, Schools } from '@/components/Sections';
 import SiteFooter from '@/components/SiteFooter';
 import SiteHeader from '@/components/SiteHeader';
+import RevealObserver from '@/components/RevealObserver';
 import StructuredData from '@/components/StructuredData';
 import WhatsAppButton from '@/components/WhatsAppButton';
 
@@ -27,6 +28,7 @@ export default function Home() {
       <SiteFooter />
       <WhatsAppButton />
       <StructuredData />
+      <RevealObserver />
     </CourseProvider>
   );
 }

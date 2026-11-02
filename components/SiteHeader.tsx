@@ -12,24 +12,56 @@ const links = [
   { href: '#faq', label: 'FAQ' },
 ];
 
+// Mobile menu uses the transitions.dev "Menu dropdown": .is-open to show,
+// .is-closing for the short close animation, then back to rest.
 export default function SiteHeader() {
   const [open, setOpen] = useState(false);
+  const [closing, setClosing] = useState(false);
   const menuBtn = useRef<HTMLButtonElement>(null);
+  const headerRef = useRef<HTMLElement>(null);
+  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  function openMenu() {
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+    setClosing(false);
+    setOpen(true);
+  }
+
+  function closeMenu() {
+    if (!open) return;
+    setOpen(false);
+    setClosing(true);
+    const ms =
+      parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--dropdown-close-dur')) || 150;
+    closeTimer.current = setTimeout(() => setClosing(false), ms);
+  }
+
+  useEffect(() => () => {
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+  }, []);
 
   useEffect(() => {
     if (!open) return;
     function onKey(e: KeyboardEvent) {
       if (e.key === 'Escape') {
-        setOpen(false);
+        closeMenu();
         menuBtn.current?.focus();
       }
     }
+    // A tap anywhere outside the header closes the menu.
+    function onPointer(e: PointerEvent) {
+      if (!headerRef.current?.contains(e.target as Node)) closeMenu();
+    }
     document.addEventListener('keydown', onKey);
-    return () => document.removeEventListener('keydown', onKey);
-  }, [open]);
+    document.addEventListener('pointerdown', onPointer);
+    return () => {
+      document.removeEventListener('keydown', onKey);
+      document.removeEventListener('pointerdown', onPointer);
+    };
+  });
 
   return (
-    <header className="site-header">
+    <header className="site-header" ref={headerRef}>
       <div className="wrap nav">
         <a className="brand" href="#top" aria-label="Alpha Designs home">
           <LogoMark />
@@ -40,17 +72,18 @@ export default function SiteHeader() {
           className="menu-btn"
           aria-expanded={open}
           aria-controls="site-nav"
-          onClick={() => setOpen((o) => !o)}
+          onClick={() => (open ? closeMenu() : openMenu())}
         >
           <span className="sr-only">Menu</span>
           <span className="bars" aria-hidden="true" />
         </button>
         <nav
           id="site-nav"
-          className={`nav-links${open ? ' open' : ''}`}
+          className={`nav-links t-dropdown${open ? ' is-open' : ''}${closing ? ' is-closing' : ''}`}
+          data-origin="top-right"
           aria-label="Main"
           onClick={(e) => {
-            if ((e.target as HTMLElement).closest('a')) setOpen(false);
+            if ((e.target as HTMLElement).closest('a')) closeMenu();
           }}
         >
           {links.map((l) => (

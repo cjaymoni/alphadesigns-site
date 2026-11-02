@@ -1,3 +1,4 @@
+import SectionHeading from './SectionHeading';
 import { CourseLink } from './CourseContext';
 
 const offers = [
@@ -44,12 +45,9 @@ export default function Bespoke() {
     <section className="section alt bespoke" id="bespoke" aria-labelledby="bespoke-title">
       <div className="wrap">
         <div className="bespoke-head">
-          <div>
-            <p className="eyebrow">Bespoke work</p>
-            <h2 className="section-title" id="bespoke-title">
-              Need something built? We make it for you.
-            </h2>
-          </div>
+          <SectionHeading eyebrow="Bespoke work" id="bespoke-title">
+            Need something built? We make it for you.
+          </SectionHeading>
           <p className="bespoke-lede">
             The people who teach our courses also design and build for clients. Whether it is a website, a web app or
             training for your team, we make it to fit you rather than a template.

@@ -1,3 +1,4 @@
+import SectionHeading from './SectionHeading';
 import Image from 'next/image';
 import { CourseLink } from './CourseContext';
 import dashboard from '@/public/codequest/dashboard.png';
@@ -37,12 +38,9 @@ export default function CodeQuest() {
     <section className="section codequest" id="codequest" aria-labelledby="codequest-title">
       <div className="wrap">
         <div className="cq-intro">
-          <div>
-            <p className="eyebrow">CodeQuest · included with school programmes</p>
-            <h2 className="section-title" id="codequest-title">
-              A classroom pupils actually want to open.
-            </h2>
-          </div>
+          <SectionHeading eyebrow="CodeQuest · included with school programmes" id="codequest-title">
+            A classroom pupils actually want to open.
+          </SectionHeading>
           <p className="cq-lede">
             CodeQuest is our online classroom. Pupils learn in short lessons, try every idea in a live code editor and
             play games that make practice fun. Teachers present from it and see how their class is getting on, all in

@@ -2,21 +2,23 @@ import { CourseLink } from './CourseContext';
 import EnrolForm from './EnrolForm';
 import { CONTACT } from '@/lib/contact';
 import { FAQS, FEES, ghs } from '@/lib/content';
+import FaqList from './FaqList';
+import SectionHeading from './SectionHeading';
 
 export function Hero() {
   return (
     <section className="hero" id="top">
       <div className="wrap hero-grid">
-        <div>
-          <p className="kicker">Web Development Training · Ghana</p>
-          <h1>
+        <div className="t-stagger" data-reveal="load">
+          <p className="kicker t-stagger-line t-stagger-line--1">Web Development Training · Ghana</p>
+          <h1 className="t-stagger-line t-stagger-line--2">
             Learn to build websites <span>by building them.</span>
           </h1>
-          <p className="lede">
+          <p className="lede t-stagger-line t-stagger-line--3">
             Hands-on, instructor-led lessons. Each one goes from a short demonstration to supported practice, then you
             make a change on your own. You finish with a working project you can publish and explain.
           </p>
-          <div className="hero-ctas">
+          <div className="hero-ctas t-stagger-line t-stagger-line--4">
             <a className="btn btn-gold" href="#courses">
               See the courses
             </a>
@@ -62,18 +64,13 @@ export function Hero() {
   );
 }
 
-function Fill({ children }: { children: React.ReactNode }) {
-  return <span className="fill">{children}</span>;
-}
-
 export function Courses() {
   return (
     <section className="section" id="courses" aria-labelledby="courses-title">
       <div className="wrap">
-        <p className="eyebrow">Courses</p>
-        <h2 className="section-title" id="courses-title">
+        <SectionHeading eyebrow="Courses" id="courses-title">
           Two tracks. Pick where you are starting from.
-        </h2>
+        </SectionHeading>
 
         <div className="tracks">
           <article className="track basic">
@@ -139,10 +136,9 @@ export function Approach() {
   return (
     <section className="section alt" id="approach" aria-labelledby="approach-title">
       <div className="wrap">
-        <p className="eyebrow">How we teach</p>
-        <h2 className="section-title" id="approach-title">
+        <SectionHeading eyebrow="How we teach" id="approach-title">
           Every lesson ends with something you made yourself.
-        </h2>
+        </SectionHeading>
         <ol className="steps">
           {steps.map(([title, text], i) => (
             <li key={title}>
@@ -178,10 +174,9 @@ export function Schools() {
     <section className="section schools" id="schools" aria-labelledby="schools-title">
       <div className="wrap schools-grid">
         <div>
-          <p className="eyebrow eyebrow-light">For schools</p>
-          <h2 className="section-title" id="schools-title">
+          <SectionHeading eyebrow="For schools" id="schools-title" light>
             Bring web development to your pupils.
-          </h2>
+          </SectionHeading>
           <p className="lede">
             We work with primary, JHS and SHS schools to run practical coding lessons as a club, enrichment period or
             holiday programme. Start with an observed demonstration, then decide whether to run a small pilot.
@@ -225,18 +220,10 @@ export function Faq() {
   return (
     <section className="section" id="faq" aria-labelledby="faq-title">
       <div className="wrap narrow">
-        <p className="eyebrow">FAQ</p>
-        <h2 className="section-title" id="faq-title">
+        <SectionHeading eyebrow="FAQ" id="faq-title">
           Good to know before you join
-        </h2>
-        <div className="faq">
-          {FAQS.map(([q, a]) => (
-            <details key={q}>
-              <summary>{q}</summary>
-              <p>{a}</p>
-            </details>
-          ))}
-        </div>
+        </SectionHeading>
+        <FaqList items={FAQS} />
       </div>
     </section>
   );
