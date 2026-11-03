@@ -2,16 +2,8 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { cssTimeMs } from '@/lib/cssTime';
+import { NAV_LINKS } from '@/lib/nav';
 import { BrandName, LogoMark } from './Logo';
-
-const links = [
-  { href: '#courses', label: 'Courses' },
-  { href: '#approach', label: 'How we teach' },
-  { href: '#schools', label: 'For schools' },
-  { href: '#codequest', label: 'CodeQuest' },
-  { href: '#bespoke', label: 'Bespoke' },
-  { href: '#faq', label: 'FAQ' },
-];
 
 // Mobile menu uses the transitions.dev "Menu dropdown": .is-open to show,
 // .is-closing for the short close animation, then back to rest.
@@ -86,7 +78,7 @@ export default function SiteHeader() {
             if ((e.target as HTMLElement).closest('a')) closeMenu();
           }}
         >
-          {links.map((l) => (
+          {NAV_LINKS.map((l) => (
             <a key={l.href} href={l.href}>
               {l.label}
             </a>
