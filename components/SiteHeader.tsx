@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { cssTimeMs } from '@/lib/cssTime';
 import { BrandName, LogoMark } from './Logo';
 
 const links = [
@@ -31,8 +32,7 @@ export default function SiteHeader() {
     if (!open) return;
     setOpen(false);
     setClosing(true);
-    const ms =
-      parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--dropdown-close-dur')) || 150;
+    const ms = cssTimeMs('--dropdown-close-dur', 150);
     closeTimer.current = setTimeout(() => setClosing(false), ms);
   }
 

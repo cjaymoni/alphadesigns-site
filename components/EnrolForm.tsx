@@ -2,6 +2,7 @@
 
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { COURSES, type Course } from '@/lib/courses';
+import { cssTimeMs } from '@/lib/cssTime';
 import { useCourse } from './CourseContext';
 
 const WHATSAPP_NUMBER = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? '';
@@ -28,7 +29,7 @@ export default function EnrolForm() {
       setShown(status);
       return;
     }
-    const dur = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--text-swap-dur')) || 150;
+    const dur = cssTimeMs('--text-swap-dur', 150);
     el.classList.add('is-exit');
     const t = setTimeout(() => {
       entering.current = true;
@@ -52,8 +53,7 @@ export default function EnrolForm() {
     el.classList.remove('is-shaking');
     void el.offsetWidth; // force reflow so the shake replays
     el.classList.add('is-shaking');
-    const cs = getComputedStyle(document.documentElement);
-    const ms = (parseFloat(cs.getPropertyValue('--shake-dur-a')) || 80) * 2 + (parseFloat(cs.getPropertyValue('--shake-dur-b')) || 60) * 2;
+    const ms = cssTimeMs('--shake-dur-a', 80) * 2 + cssTimeMs('--shake-dur-b', 60) * 2;
     setTimeout(() => el.classList.remove('is-shaking'), ms + 20);
   }
 
