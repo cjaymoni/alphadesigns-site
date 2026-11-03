@@ -599,3 +599,69 @@ html:not(.js) .t-stagger-line { opacity: 1; transform: none; filter: none; }
 @media (prefers-reduced-motion: reduce) {
   .t-text-swap { transition: none !important; }
 }
+
+/* ───────── Content reveals ─────────
+   Everything under the section headings rises in as it scrolls into view, using the
+   same texts-reveal timing as the headings. Groups stagger their children; single
+   items reveal on their own. RevealObserver adds .is-shown; the selectors below must
+   match REVEAL_GROUPS and REVEAL_ITEMS in components/RevealObserver.tsx.
+   :where() keeps the base rule weak so the card hover rule below can override its transition. */
+html.js :where(.tracks, .learn, .steps, .why, .ticks, .cq-features, .cq-numbers, .cq-roles ul, .offers, .process, .faq, .enrol-grid > div:first-child) > *,
+html.js :is(.code-card, .sub-title, .schools-grid .lede, .schools-grid > div:first-child > .btn, .path-card, .cq-lede, .browser, .cq-cta, .bespoke-lede, .bespoke-foot > .btn, .enrol-form) {
+  opacity: 0;
+  transform: translateY(var(--stagger-distance));
+  filter: blur(var(--stagger-blur));
+  transition:
+    opacity   var(--stagger-dur) var(--stagger-ease),
+    transform var(--stagger-dur) var(--stagger-ease),
+    filter    var(--stagger-dur) var(--stagger-ease);
+  transition-delay: var(--reveal-delay, 0s);
+}
+html.js :is(.tracks, .learn, .steps, .why, .ticks, .cq-features, .cq-numbers, .cq-roles ul, .offers, .process, .faq, .enrol-grid > div:first-child) > :nth-child(2) { --reveal-delay: var(--stagger-stagger); }
+html.js :is(.tracks, .learn, .steps, .why, .ticks, .cq-features, .cq-numbers, .cq-roles ul, .offers, .process, .faq, .enrol-grid > div:first-child) > :nth-child(3) { --reveal-delay: calc(var(--stagger-stagger) * 2); }
+html.js :is(.tracks, .learn, .steps, .why, .ticks, .cq-features, .cq-numbers, .cq-roles ul, .offers, .process, .faq, .enrol-grid > div:first-child) > :nth-child(4) { --reveal-delay: calc(var(--stagger-stagger) * 3); }
+html.js :is(.tracks, .learn, .steps, .why, .ticks, .cq-features, .cq-numbers, .cq-roles ul, .offers, .process, .faq, .enrol-grid > div:first-child) > :nth-child(n + 5) { --reveal-delay: calc(var(--stagger-stagger) * 4); }
+/* The hero code card follows the hero text in. */
+html.js .code-card { --reveal-delay: calc(var(--stagger-stagger) * 3); }
+
+html.js :is(.tracks, .learn, .steps, .why, .ticks, .cq-features, .cq-numbers, .cq-roles ul, .offers, .process, .faq, .enrol-grid > div:first-child).is-shown > *,
+html.js :is(.code-card, .sub-title, .schools-grid .lede, .schools-grid > div:first-child > .btn, .path-card, .cq-lede, .browser, .cq-cta, .bespoke-lede, .bespoke-foot > .btn, .enrol-form).is-shown {
+  opacity: 1;
+  transform: none;
+  filter: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  html.js :is(.tracks, .learn, .steps, .why, .ticks, .cq-features, .cq-numbers, .cq-roles ul, .offers, .process, .faq, .enrol-grid > div:first-child) > *,
+  html.js :is(.code-card, .sub-title, .schools-grid .lede, .schools-grid > div:first-child > .btn, .path-card, .cq-lede, .browser, .cq-cta, .bespoke-lede, .bespoke-foot > .btn, .enrol-form) {
+    transform: none;
+    filter: none;
+    transition: opacity 200ms linear !important;
+  }
+}
+
+/* ───────── Card hovers ─────────
+   Course tracks, bespoke offers and CodeQuest features lift toward the pointer;
+   CodeQuest screenshots zoom slightly. Mouse only, and off under reduced motion. */
+/* Same selector weight as the reveal base rule and later in the file, so it wins. The
+   reveal stagger delays only the reveal properties; the hover lift always responds at once. */
+html.js :where(.tracks, .offers, .cq-features) > *,
+.track, .offers > li, .cq-features > li {
+  transition:
+    opacity   var(--stagger-dur) var(--stagger-ease),
+    transform var(--stagger-dur) var(--stagger-ease),
+    filter    var(--stagger-dur) var(--stagger-ease),
+    translate 400ms var(--stagger-ease),
+    box-shadow 400ms var(--stagger-ease);
+  transition-delay: var(--reveal-delay, 0s), var(--reveal-delay, 0s), var(--reveal-delay, 0s), 0s, 0s;
+}
+.cq-features .shot { overflow: hidden; }
+.cq-features .shot img { transition: scale 600ms var(--stagger-ease); }
+.offer-icon { transition: rotate 500ms var(--stagger-ease), scale 500ms var(--stagger-ease); }
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .track:hover, .offers > li:hover, .cq-features > li:hover {
+    translate: 0 -8px;
+    box-shadow: 0 24px 44px -24px rgba(15, 27, 45, .45);
+  }
+  .cq-features > li:hover .shot img { scale: 1.06; }
+  .offers > li:hover .offer-icon { rotate: -8deg; scale: 1.15; }
+}

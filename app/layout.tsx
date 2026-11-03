@@ -33,12 +33,17 @@ export const viewport: Viewport = {
   themeColor: '#0f1b2d',
 };
 
+const REVEAL_FALLBACK_MS = 2500;
+const REVEAL_BOOT_SCRIPT = `document.documentElement.classList.add('js');setTimeout(function(){var d=document.documentElement;if(!d.dataset.revealReady)d.classList.remove('js')},${REVEAL_FALLBACK_MS});`;
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en-GH" className={`${display.variable} ${body.variable}`} suppressHydrationWarning>
       <head>
-        {/* Marks that JavaScript runs, so reveal animations may start hidden (see globals.css). */}
-        <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
+        {/* Marks that JavaScript runs, so reveal animations may start hidden (see globals.css).
+            If RevealObserver never starts (e.g. a script fails to load), drop the mark after
+            2.5s so no content stays hidden. */}
+        <script dangerouslySetInnerHTML={{ __html: REVEAL_BOOT_SCRIPT }} />
       </head>
       <body>{children}</body>
     </html>
